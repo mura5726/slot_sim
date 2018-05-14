@@ -1,6 +1,6 @@
 # library load
 library(ggplot2)
-library(tidyverse)
+library(dplyr)
 ggplot() + theme_set(theme_bw(base_size = 14, base_family = "HiraKakuProN-W3"))
 
 # set big & reg probability list
@@ -35,22 +35,27 @@ for(settei in 1:6){
 # set colnames
 colnames(d) <- c("big", "reg", "prob.big", "prob.reg", "prob.all", "settei")
 
+# convert to tibble
 d <- d %>% as_tibble
 
 for(j in 1:6){
   dj <-
     d %>%
-      filter(settei == j) %>% 
-      summarise_each(funs(max , min ,mean) , prob.all)
+    filter(settei == j) %>% 
+    summarise(max = max(prob.all), min = min(prob.all), mean = mean(prob.all))
   print(dj)
-  }
+}
 
+d %>% 
+  filter(settei == 6) %>% 
+  arrange(desc(prob.all))
 
-ggplot(d, aes(x = big)) +
-  geom_density(size=0.5,alpha=0.5)
-# 
-g1 <- ggplot(d, aes(x = big, y = reg)) + 
-  geom_point(aes(colour=settei), size=1, alpha=0.5)　
-#描画
-g1
+# make settei charactor
+d <- d %>% mutate(settei = as.character(settei))
 
+# plot
+ggplot(d, aes(x = prob.all)) +
+  geom_density(aes(fill=settei), size=0.3, alpha=0.5)
+
+ggplot(d, aes(x = big, y = reg)) + 
+  geom_point(aes(colour=settei), size=0.3, alpha=0.5)　
