@@ -11,7 +11,7 @@ list.prob.reg <- c(1/496, 1/464, 1/431, 1/397, 1/366, 1/336)
 # settei <- 6
 
 # dausuu
-samp_i <- 10000
+samp_i <- 100000
 
 # make 0 matrix
 d <- matrix(0, samp_i * 6, 6)
@@ -48,7 +48,7 @@ for(j in 1:6){
 
 d %>% 
   filter(settei == 6) %>% 
-  arrange(desc(prob.all))
+  arrange(prob.big)
 
 # make settei charactor
 d <- d %>% mutate(settei = as.character(settei))

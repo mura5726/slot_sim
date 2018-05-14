@@ -1,7 +1,15 @@
 # slot_sim
 
-- ドラゴンハナハナを各設定10000台を8000回転回してみた
+- ドラゴンハナハナの各設定を8000回転回してみた
+
+## 10000台のシミュレーション
 
 ![設定ごとの合算分布](https://github.com/mura5726/slot_sim/blob/master/images/alldens.png)
 
 ![設定ごとのBIGとREG分布](https://github.com/mura5726/slot_sim/blob/master/images/bigreg.png)
+
+## 100000台のシミュレーション
+
+![設定ごとの合算分布](https://github.com/mura5726/slot_sim/blob/master/images/alldens100000.png)
+
+![設定ごとのBIGとREG分布](https://github.com/mura5726/slot_sim/blob/master/images/bigreg100000.png)
